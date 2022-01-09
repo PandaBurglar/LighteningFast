@@ -19,9 +19,9 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   payment_methods_id INTEGER REFERENCES payment_methods(id) ON DELETE CASCADE,
-  placed_at TIMESTAMPTZ NOT NULL,
+  placed_at TIMESTAMP NOT NULL,
   status status_update NOT NULL, 
-  expected_pickup DATE NOT NULL
+  expected_pickup TIMESTAMP NOT NULL
 );
 
 
