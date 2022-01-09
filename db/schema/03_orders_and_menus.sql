@@ -14,7 +14,7 @@ CREATE TABLE menu_items(
 );
 
 
-CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pickup', 'on route to deliver', 'delivered', 'being prepared');
+CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pickup', 'being prepared');
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -31,4 +31,4 @@ CREATE TABLE order_items (
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   quantity SMALLINT DEFAULT 0,
   total_price SMALLINT
-)
+);      
