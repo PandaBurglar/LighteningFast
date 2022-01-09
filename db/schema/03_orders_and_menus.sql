@@ -18,10 +18,10 @@ CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pick
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  payment_methods_id INTEGER REFERENCES payment_methods(id) ON DELETE CASCADE,
   placed_at TIMESTAMP NOT NULL,
   status status_update NOT NULL, 
-  expected_pickup TIMESTAMP NOT NULL
+  expected_pickup TIMESTAMP NOT NULL,
+  payment_method TEXT NOT NULL
 );
 
 

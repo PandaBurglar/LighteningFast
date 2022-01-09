@@ -19,5 +19,5 @@ VALUES ('Alice McKay', 'mkkay@gmail.com', 'password', '123456789'),
 ('Cassie Ken', 'ccsken@gmail.com', 'password', '8987786565' ),
 ('Homo Sapien', 'homosapien@gmail.com', 'password', '7768987007' ),
 ('Lilly Singh', 'lillypad@singh.com', 'password', '3432226457' ),
-('Git Hub', 'githubiscool@myspace.com', 'password', '999767888' ),
+('Git Hub', 'githubiscool@myspace.com', 'password', '999767888' ),     
 ('Apple McPhee', 'mcpheeapple@gmail.com', 'password', '4162893536' );
