@@ -14,17 +14,13 @@ CREATE TABLE menu_items(
 );
 
 
-CREATE TYPE delivery as ENUM ('pickup', 'delivery');
 CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pickup', 'on route to deliver', 'delivered', 'being prepared');
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  location_id INTEGER REFERENCES locations(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   payment_methods_id INTEGER REFERENCES payment_methods(id) ON DELETE CASCADE,
   placed_at TIMESTAMPTZ NOT NULL,
-  delivery_method delivery NOT NULL, 
   status status_update NOT NULL, 
-  expected_delivery DATE NOT NULL, 
   expected_pickup DATE NOT NULL
 );
 
