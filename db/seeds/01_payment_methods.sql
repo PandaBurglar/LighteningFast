@@ -5,4 +5,8 @@
 -- );
 
 
-INSERT INTO payment_methods VALUES ('');
+INSERT INTO payment_methods (payment)
+VALUES 
+('cash'), 
+('debit'), 
+('credit');
