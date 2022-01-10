@@ -1,11 +1,11 @@
-INSERT INTO menu_items (item_name, item_price, description, image) 
-VALUES ('Bluebery Danish', 2.75, 'description', 'https://en.wikipedia.org/wiki/File:Glazed_apple_Danish.jpg%27'), 
-('Cherry Danish', 2.75, 'description', 'https://en.wikipedia.org/wiki/File:Glazed_apple_Danish.jpg%27'), 
-('Apple Danish', 2.75, 'description', 'https://en.wikipedia.org/wiki/File:Glazed_apple_Danish.jpg%27'), 
-('Plain Croissant', 2.50, 'description', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2018_01_Croissant_IMG_0685.JPG/270px-2018_01_Croissant_IMG_0685.JPG%27'), 
-('Almond Croissant', 2.50, 'description', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2018_01_Croissant_IMG_0685.JPG/270px-2018_01_Croissant_IMG_0685.JPG%27'), 
-('Cheese Croissant', 2.50, 'description', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2018_01_Croissant_IMG_0685.JPG/270px-2018_01_Croissant_IMG_0685.JPG%27'), 
-('Carrot Muffin', 2.25, 'description', 'https://sugargeekshow.com/wp-content/uploads/2019/10/chocolate-chip-muffins-featured.jpg.webp%27'), 
-('Cranberry Muffin', 2.25, 'description', 'https://sugargeekshow.com/wp-content/uploads/2019/10/chocolate-chip-muffins-featured.jpg.webp%27'), 
-('Chocolate Chip Muffin', 2.25, 'description', 'https://sugargeekshow.com/wp-content/uploads/2019/10/chocolate-chip-muffins-featured.jpg.webp%27'), 
-('Smart Water', 2.25, 'description', 'https://www.londondrugs.com/on/demandware.static/-/Sites-londondrugs-master/default/dwd075971f/products/L4233797/large/L4233797.JPG%27');
+INSERT INTO menu_items (item_name, item_price, description, image)
+VALUES ('Bluebery Danish', 2.75, 'Pastry filled with blueberry jam', '/images/Danishes-Blueberyy.jpg'),
+('Cherry Danish', 2.75, 'Flaky pastry filled with cherry jam', '/images/Danishes-Cherry-Cheese.jpg'),
+('Plain Croissant', 2.50, 'Flaky, buttery croissant', '/images/Croissant-Plain.jpg'),
+('Custard Tart', 2.75, 'Fresh custard tart', '/images/custard.jpg'),
+('Sicilian', 3.99, 'Ricotta chocolate chip filling in a fried cannoli shell, topped with candied cherries', '/images/Cannoli-Sicilian.jpg'),
+('Rum Baba', 3.99, 'Soft baked pastry sponge soaked in a boiled rum mixture filled with custard and topped with candied cherries', '/images/Rum-Baba.jpg'),
+('Whip Cream Eclair', 3.99, 'Baked eclair shell dipped in chocolate filled with whip cream', '/images/Lrg-Pastries-Whip-Cream-Eclair.jpg'),
+('Chocolate Cupcake', 3.75, 'Chocolate or vanilla cupcake topped with chocolate buttercream.', 'images/Cupcake-Chocolate.jpg'),
+('Chocolate Chip Brownies', 3.50, 'Chocolate brownie, topped with chocolate fudge and chocolate chips', '/images/Brownies-Chocolate-Chip.jpg'),
+('Tiramisu', 4.49, 'Ladyfingers soaked in espresso and Khaula, layered with mascarpone filling and chocolate shavings', '/images/Other-Tiramisu-Cup.jpg');
