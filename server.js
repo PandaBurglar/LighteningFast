@@ -1,9 +1,11 @@
 // load .env data into process.env
 require("dotenv").config();
+const path = require('path');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
+// const sassMiddleware = require('node-sass-middleware');
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -30,6 +32,15 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
+// app.use(sassMiddleware({
+//   /* Options */
+//   src: path.join(__dirname, '/styles'),
+//   dest: path.join(__dirname, '/public/styles'),
+//   debug: true,
+//   outputStyle: 'compressed',
+//   prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+// }));
+// console.log(path.join);
 
 app.use(express.static("public"));
 
