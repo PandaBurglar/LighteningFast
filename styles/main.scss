@@ -14,13 +14,59 @@ body {
 }
 
 .reviews-card {
-padding: 50px 20px;
+padding: 20px;
+width: 30%;
 }
 
 .location-card{
-  padding: 50px 20px;
+  padding: 20px;
+  line-height: 15px;
+  font-size: 18px;
 
 }
+.hours-card {
+  padding: 20px 20px;
+  line-height: 15px;
+  font-size: 18px;
+}
+.carousel-inner {
+  height: 500px;
+}
+.order-now {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+background-color: gray;
+color: white;
+height: 40px;
+font-weight: 500;
+font-size: 25px;
+padding: 40px 0px;
+}
+.order-now:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.info-header{
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.location-img {
+  height: 200px;
+  width: auto;
+  margin-bottom: 10px;
+}
+.star-emojis {
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.review{
+  margin: 0px;
+  font-style: italic;
+}
+
+
 
 .footer {
   display: flex;
