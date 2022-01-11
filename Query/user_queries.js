@@ -5,7 +5,7 @@ const getNameFromUsersQuery = `SELECT name FROM users WHERE id = $1;`;
 const getOrdersPerUserQuery = 
 `SELECT * FROM orders
 JOIN order_items ON orders.id = order_id
-JOIN menu_items ON menu_items.id = item_id
+JOIN menu_items ON menu_items.id = orders.user_id
 WHERE user_id = $1;`;
 
 const getItemsPerUserQuery = 
@@ -20,32 +20,43 @@ const apendOrdersTableWithUserIdQuery = `
 
 const apendOrderItemsTableWithCurrentOrderQuery = 
 ` INSERT INTO order_items (
-  menu_item_id
-  order_id 
+  menu_item_id,
+  order_id, 
   quantity )
   VALUES ($1, $2, $3)
   RETURNING order_id;`;
 
-const updateOrdersTableWithTotalPriceQuery = 
+const updateOrderStatusInOrdersTableQuery = 
 `UPDATE orders 
-  SET total_price = (
-    SELECT sum(menu_item.item_price * order_items.quantity) FROM order_items
-    JOIN order_items ON orders.id = order_id
-    JOIN menu_items ON menu_items.id = menu_items_id
-    WHERE order_id = $1 )
-    WHERE id = $1;
+SET status= 'order confirmed' WHERE id = $1;
+`;
+const updateOrdersTableWithExpectedPickupQuery = 
+`UPDATE orders 
+SET payment_method = $1
+WHERE id = $1;
 `;
 
- 
-const getIdandOrderStatusQuery = 
-`
-  SELECT id, order_status, user_id
-  FROM orders
-  WHERE id = $1
+const updateOrdersTableWithTotalPriceQuery = 
+`UPDATE orders 
+SET total_price = (
+  SELECT sum(menu_items.item_price_cents * order_items.quantity) as total 
+  FROM order_items
+  JOIN menu_items ON menu_items.id = order_items.menu_item_id
+  WHERE order_items.id = $1)
+WHERE  id = $1;
+`;
+
+const getCheckoutPageQuery = 
+`SELECT order_id, quantity, total_price as total,
+menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.image, users.name as customer
+FROM order_items
+JOIN orders ON orders.id = order_id
+JOIN menu_items ON menu_items.id = order_items.menu_item_id
+JOIN users ON users.id = $1;
 `;
 
 const getIdandOrderStatusQuery = `
-  SELECT id, order_status, user_id
+  SELECT id, status, user_id
   FROM orders
   WHERE id = $1
 `;
@@ -56,10 +67,7 @@ SELECT *
 FROM menu_items;
 `;
 
-
-// NEXT: HOW TO GET ORDER STATUSES FROM ENUM //
-
-function apendOrdersTableWithCurrentOrderReturningOrderId(, foodData) {
+function apendOrdersTableWithCurrentOrderReturningOrderId(db, foodData) {
   return db.query(apendOrderItemsTableWithCurrentOrderQuery, foodData);  
 };
 
@@ -68,13 +76,21 @@ function apendOrdersTableWithUserId(db, userId) {
     .then((data) => {
       return data.rows[0].id;
     });
-}
+};
+
+function updateOrderStatusInOrdersTable(db, orderId) {
+  return db.query(updateOrderStatusInOrdersTableQuery, [orderId]);
+};
+
+function updateOrdersTableWithExpectedPickup(db, orderId) {
+  return db.query(updateOrdersTableWithExpectedPickupQuery, [orderId]);
+};
 
 function updateOrdersTableWithTotalPrice(db, orderId) {
   return db.query(updateOrdersTableWithTotalPriceQuery, [orderId]);
-}
+};
 
-function getUserIdFromName(, userName) {
+function getUserIdFromName(db, userName) {
   return db.query(getIdFromUsersQuery, [userName])
     .then((data) => {
       return data.rows[0].id;
@@ -95,21 +111,28 @@ function getOrdersPerUser(db, userId) {
     });
 }; 
 
-function getIdandOrderStatus(, orderId) {
-  return .query(getIdandOrderStatusQuery, [orderId]).then(data => {
+function getCheckoutPage(db, userId) {
+  return db.query(getCheckoutPageQuery, [userId])
+    .then(orderData => {
+      return orderData.rows;
+    });
+}; 
+
+function getIdandOrderStatus(db, orderId) {
+  return db.query(getIdandOrderStatusQuery, [orderId]).then(data => {
     return data.rows[0];
   })
 };
 
-function getItemsPerUser(, userId) {
-  return .query(getItemsPerUserQuery, [userId])
+function getItemsPerUser(db, userId) {
+  return db.query(getItemsPerUserQuery, [userId])
     .then(orderStatusData => {
       return orderStatusData.rows
     })
 };
 
-function getMenuItems() {
-  return .query(getMenuItemsQuery)
+function getMenuItems(db) {
+  return db.query(getMenuItemsQuery)
     .then(menuItemsData => {
       return menuItemsData.rows
     })
@@ -124,5 +147,8 @@ module.exports = {
   getOrdersPerUser,
   getItemsPerUser,
   getIdandOrderStatus,
-  getMenuItems
+  getMenuItems,
+  updateOrdersTableWithExpectedPickup,
+  updateOrderStatusInOrdersTable, 
+  getCheckoutPage
 }
