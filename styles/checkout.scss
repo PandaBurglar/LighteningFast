@@ -1,0 +1,90 @@
+body {
+	display: flex;
+  flex-direction: column;
+
+}
+.menu-item-img {
+  height: 80px;
+  width: auto;
+}
+h1{
+  text-align: center;
+  padding: 50px;
+}
+
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+justify-content: space-between;
+padding: 20px 40px;
+margin: 15px 0px;
+border: 1px solid black;
+}
+
+.subtotal-calc {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 90%;
+}
+
+.payment-methods{
+  display: flex;
+  flex-direction: column;
+}
+.pay-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+.pay{
+  font-size: 20px;
+  font-weight: 700px;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 15px;
+
+}
+
+.visa-img{
+  height: 60px;
+  width: auto;
+  margin-right: 20px;
+}
+.mc-img{
+  height: 60px;
+  width: auto;
+  margin-right: 20px;
+
+}
+.cash{
+  font-size: 30px;
+  font-weight:900;
+}
+.btn-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 40px;
+  font-size: 25px;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+padding: 20px 20px;
+background-color: gray;
+}
