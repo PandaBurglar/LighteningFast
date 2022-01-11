@@ -24,4 +24,64 @@ menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.im
 FROM order_items
 JOIN orders ON orders.id = order_id
 JOIN menu_items ON menu_items.id = order_items.menu_item_id
-JOIN users ON users.id = user_id;
+JOIN users ON users.id = 3;
+
+
+--- orders per user -- 
+SELECT * FROM orders
+JOIN order_items ON orders.id = order_id
+JOIN menu_items ON menu_items.id = orders.user_id
+WHERE user_id = 3;
+
+
+--- items per user -- 
+ SELECT * FROM orders 
+where user_id = 3;
+
+-- add to orders table with user_id
+INSERT INTO orders (user_id)
+  VALUES (6)
+RETURNING id;
+
+-- add order items table with current order -- 
+INSERT INTO order_items (
+  menu_item_id,
+  order_id, 
+  quantity)
+  VALUES (1, 5, 1)
+RETURNING order_id;
+
+
+-- get menu items -- 
+SELECT *
+FROM menu_items;
+
+-- get id and the order status 
+SELECT id, status, user_id
+FROM orders
+WHERE id = 1;
+
+
+------ FIXING 3 TABLES BELOW ---
+-- add total price in orders --- 
+INSERT INTO orders 
+  (total_price) 
+  VALUES (
+    SELECT sum(menu_items.item_price * order_items.quantity) as total 
+    FROM order_items
+    JOIN menu_items ON menu_items.id = order_items.menu_item_id
+    WHERE order_items.id = 6 )  
+RETURNING  id = 6;
+
+-- update payment method, expected up and placed at in orders --- 
+UPDATE orders 
+  SET total_price = (
+    SELECT sum(menu_items.item_price * order_items.quantity) FROM order_items
+    JOIN menu_items ON menu_items.id = order_items.menu_item_id
+    WHERE order_id = 6 )  
+WHERE id = 6;
+
+
+
+-- update order status -- 
+
