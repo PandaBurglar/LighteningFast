@@ -32,15 +32,6 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
-// app.use(sassMiddleware({
-//   /* Options */
-//   src: path.join(__dirname, '/styles'),
-//   dest: path.join(__dirname, '/public/styles'),
-//   debug: true,
-//   outputStyle: 'compressed',
-//   prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
-// }));
-// console.log(path.join);
 
 app.use(express.static("public"));
 
@@ -48,13 +39,19 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-const ordersRoutes = require('./routes/orders');
+const menuRoutes = require('./routes/menu');
+const orderRoutes = require('./routes/order');
+const checkoutRoutes = require('./routes/checkout');
+const adminRoutes = require('./routes/admin');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use('/orders', ordersRoutes);
+app.use('/menu', menuRoutes);
+app.use('/order', orderRoutes);
+app.use('/checkout', checkoutRoutes);
+app.use('/admin', adminRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -65,20 +62,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/menu", (req, res) => {
-  res.render('menu');
-});
 
-app.get('/order_status', (req, res) =>{
-  res.render('order_status')
-});
-
-app.get('/checkout', (req, res) =>{
-  res.render('checkout')
-});
-app.get('/admin', (req, res) =>{
-  res.render('admin')
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
