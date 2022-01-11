@@ -28,9 +28,9 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   placed_at TIMESTAMP NOT NULL DEFAULT NOW(),
   status status_update NOT NULL DEFAULT 'pending',
-  expected_pickup TIMESTAMP NOT NULL,
+  expected_pickup TIMESTAMP NOT NULL DEFAULT NOW (),
   payment_method TEXT NOT NULL DEFAULT 'cash',
-  total_price SMALLINT
+  total_price SMALLINT DEFAULT 0
 );
 
 
