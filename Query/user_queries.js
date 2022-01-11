@@ -59,8 +59,8 @@ FROM menu_items;
 
 // NEXT: HOW TO GET ORDER STATUSES FROM ENUM //
 
-function apendOrdersTableWithCurrentOrderReturningOrderId(midterm, foodData) {
-  return midterm.query(apendOrderItemsTableWithCurrentOrderQuery, foodData);  
+function apendOrdersTableWithCurrentOrderReturningOrderId(, foodData) {
+  return db.query(apendOrderItemsTableWithCurrentOrderQuery, foodData);  
 };
 
 function apendOrdersTableWithUserId(db, userId) {
@@ -74,8 +74,8 @@ function updateOrdersTableWithTotalPrice(db, orderId) {
   return db.query(updateOrdersTableWithTotalPriceQuery, [orderId]);
 }
 
-function getUserIdFromName(midterm, userName) {
-  return midterm.query(getIdFromUsersQuery, [userName])
+function getUserIdFromName(, userName) {
+  return db.query(getIdFromUsersQuery, [userName])
     .then((data) => {
       return data.rows[0].id;
     });
@@ -95,21 +95,21 @@ function getOrdersPerUser(db, userId) {
     });
 }; 
 
-function getIdandOrderStatus(midterm, orderId) {
-  return midterm.query(getIdandOrderStatusQuery, [orderId]).then(data => {
+function getIdandOrderStatus(, orderId) {
+  return .query(getIdandOrderStatusQuery, [orderId]).then(data => {
     return data.rows[0];
   })
 };
 
-function getItemsPerUser(midterm, userId) {
-  return midterm.query(getItemsPerUserQuery, [userId])
+function getItemsPerUser(, userId) {
+  return .query(getItemsPerUserQuery, [userId])
     .then(orderStatusData => {
       return orderStatusData.rows
     })
 };
 
-function getMenuItems(midterm) {
-  return midterm.query(getMenuItemsQuery)
+function getMenuItems() {
+  return .query(getMenuItemsQuery)
     .then(menuItemsData => {
       return menuItemsData.rows
     })
