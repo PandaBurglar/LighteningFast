@@ -27,9 +27,9 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   placed_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  status status_update NOT NULL,
-  expected_pickup TIMESTAMP NOT NULL,
-  payment_method TEXT NOT NULL,
+  status status_update ,
+  expected_pickup TIMESTAMP,
+  payment_method TEXT,
   total_price SMALLINT
 );
 
