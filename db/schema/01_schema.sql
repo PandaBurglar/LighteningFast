@@ -16,20 +16,20 @@ CREATE TABLE users (
 CREATE TABLE menu_items(
   id SERIAL PRIMARY KEY NOT NULL,
   item_name VARCHAR(255) NOT NULL,
-  item_price SMALLINT NOT NULL,
+  item_price_cents SMALLINT NOT NULL,
   description TEXT NOT NULL,
   image VARCHAR(255) NOT NULL
 );
 
 
-CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pickup', 'being prepared');
+CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pickup', 'being prepared', 'cancelled');
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   placed_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  status status_update ,
-  expected_pickup TIMESTAMP,
-  payment_method TEXT,
+  status status_update NOT NULL DEFAULT 'pending',
+  expected_pickup TIMESTAMP NOT NULL,
+  payment_method TEXT NOT NULL DEFAULT 'cash',
   total_price SMALLINT
 );
 
