@@ -73,6 +73,12 @@ app.get('/order_status', (req, res) =>{
   res.render('order_status')
 });
 
+app.get('/checkout', (req, res) =>{
+  res.render('checkout')
+});
+app.get('/admin', (req, res) =>{
+  res.render('admin')
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
