@@ -17,3 +17,15 @@ SELECT orders.id AS order_id,
   JOIN menu_items ON menu_items.id = menu_items_id
   GROUP BY orders.id, menu_items.id, users.id
   ORDER by orders.id;
+
+--  menu items
+SELECT *
+FROM menu_items;
+
+-- checkout page
+SELECT order_id, quantity, total_price as total,
+menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.image, users.name as customer
+FROM order_items
+JOIN orders ON orders.id = order_id
+JOIN menu_items ON menu_items.id = menu_items_id
+JOIN users ON users.id = user_id;
