@@ -13,6 +13,8 @@
 -- (3, 2, '2022-07-22 19:11:25-07', '2022-07-22 20:25:25-07', 'pending'),
 -- (4, 3, '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup'),
 -- (5, 2, '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed');
+
+
 INSERT INTO users (name, email, password, phone_number)
 VALUES ('Alice McKay', 'mkkay@gmail.com', 'password', '123456789'),
 ('Hashim Ahmed', 'hsahmed@gmail.com', 'password', '124576789' ),
