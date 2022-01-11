@@ -26,10 +26,11 @@ CREATE TYPE status_update as ENUM ('pending', 'order confirmed', 'ready for pick
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  placed_at TIMESTAMP NOT NULL,
+  placed_at TIMESTAMP NOT NULL DEFAULT NOW(),
   status status_update NOT NULL,
   expected_pickup TIMESTAMP NOT NULL,
-  payment_method TEXT NOT NULL
+  payment_method TEXT NOT NULL,
+  total_price SMALLINT
 );
 
 
@@ -37,6 +38,5 @@ CREATE TABLE order_items (
   id SERIAL PRIMARY KEY NOT NULL,
   menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  quantity SMALLINT DEFAULT 0,
-  total_price SMALLINT
+  quantity SMALLINT DEFAULT 0
 );
