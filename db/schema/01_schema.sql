@@ -25,10 +25,10 @@ CREATE TABLE menu_items(
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  placed_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  status VARCHAR(30) NOT NULL,
-  expected_pickup TIMESTAMP NOT NULL DEFAULT NOW (),
-  payment_method TEXT NOT NULL DEFAULT 'cash',
+  placed_at TIMESTAMP DEFAULT NOW(),
+  status VARCHAR(30) DEFAULT 'pending',
+  expected_pickup TIMESTAMP DEFAULT NOW() + interval '1 hour',
+  payment_method TEXT DEFAULT 'cash',
   total_price SMALLINT DEFAULT 0
 );
 
