@@ -24,7 +24,11 @@
 <img class="menu-item-img" src="images/holly-stratton-XTHa-47HjjI-unsplash.jpg" alt="">
   </div>
   <div class="item-name">
-    <p>Items</p>
+
+   <% for (let item of checkoutCart) { %>
+    <p><%= item.item_name %></p>
+
+    <% } %>
   </div>
   <div class="quantity">
     <p>Quantity</p>
