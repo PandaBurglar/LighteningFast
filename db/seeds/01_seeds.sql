@@ -13,6 +13,8 @@
 -- (3, 2, '2022-07-22 19:11:25-07', '2022-07-22 20:25:25-07', 'pending'),
 -- (4, 3, '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup'),
 -- (5, 2, '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed');
+
+
 INSERT INTO users (name, email, password, phone_number)
 VALUES ('Alice McKay', 'mkkay@gmail.com', 'password', '123456789'),
 ('Hashim Ahmed', 'hsahmed@gmail.com', 'password', '124576789' ),
@@ -39,15 +41,23 @@ VALUES ('Bluebery Danish', 2.75, 'Pastry filled with blueberry jam', '/images/Da
 
 
 INSERT INTO orders (user_id, payment_method, placed_at, expected_pickup, status, total_price)
-VALUES (1, 'cash', '2022-05-22 19:10:25-07', '2022-05-22 19:20:25-07', 'pending',  5.5),
+VALUES (1, 'cash', '2022-05-22 19:10:25-07', '2022-05-22 19:20:25-07', 'pending',  5.50),
 (2, 'debit', '2022-06-22 19:11:25-07', '2022-06-22 20:25:25-07', 'being prepared', 8.25),
 (3, 'cash', '2022-07-22 19:11:25-07', '2022-07-22 20:25:25-07', 'pending', 2.75),
-(4, 'credit', '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup', 10),
-(5, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed', 25);
+(4, 'credit', '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup', 11),
+(5, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed', 39.9),
+(6, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'cancelled', 39.9),
+(7, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'completed', 39.9);
+
 
 INSERT INTO order_items (menu_item_id, order_id, quantity)
 VALUES (1, 1, 2),
 (2, 2, 3),
 (3, 3, 1),
 (4, 4, 4),
-(5, 5, 10);
+(5, 5, 10),
+(6, 6, 10),
+(7, 7, 10);
+
+
+
