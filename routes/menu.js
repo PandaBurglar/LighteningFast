@@ -1,5 +1,6 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const apendOrderItemsTableWithCurrentOrderQuery = require('../Query/user_queries');
 
 
 module.exports = (db) => {
@@ -10,8 +11,8 @@ module.exports = (db) => {
     `)
       .then(data => {
         const menu = data.rows;
-        // console.log(menu);
-        const templateVars = {menu};
+        console.log(menu);
+        const templateVars = { menu };
         res.render('menu', templateVars)
       })
       .catch(err => {
@@ -20,5 +21,14 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  // router.post('/', (req, res) => {
+  //   console.log('req==', req);
+  //   const values = [1, 6, 1];
+  //   apendOrderItemsTableWithCurrentOrderQuery(db, values)
+  //   .then(res => { console.log('res', res) })
+  // });
+
+
   return router;
 };

@@ -1,5 +1,8 @@
 const express = require('express');
 const router  = express.Router();
+const apendOrderItemsTableWithCurrentOrderQuery = require('../Query/user_queries');
+const apendOrdersTableWithUserIdQuery = require('../Query/user_queries');
+
 module.exports = (db) => {
 router.get('/', (req, res) =>{
 console.log('This getRoute should show the user what to display in their checkout cart');
@@ -15,6 +18,23 @@ console.log('This getRoute should show the user what to display in their checkou
   //     .status(500)
   //     .json({ error: err.message });
   // });
+});
+
+// router.post('/', (req, res) =>{
+//   const values = [7]
+//   db.query(`
+//       INSERT INTO order(user_id)
+//       VALUES($1)
+//       `, values).then(res => {console.log('res', res)})
+// });
+
+router.post('/', (req, res) => {
+  let orderInfo = JSON.parse(req.body.data);
+  const values = [1, req.body.id, req.body.qty];
+  apendOrdersTableWithUserIdQuery(db, )
+  .then(res => apendOrderItemsTableWithCurrentOrderQuery(db, ))
+  // apendOrderItemsTableWithCurrentOrderQuery(db, values)
+  // .then(res => { console.log('res', res) })
 });
 
 return router;

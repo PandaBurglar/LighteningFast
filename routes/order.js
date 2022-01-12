@@ -25,13 +25,13 @@ module.exports = (db) => {
   // })
 
   // This route creates an order. POST To this route when the user clicks on the SUBMIT ORDER button to confirm the order.
-  router.post('/', (req, res) =>{
-    const values = [3]
-    db.query(`
-        INSERT INTO order(user_id)
-        VALUES($1)
-        `, values).then(res => {console.log('res', res)})
-  })
+  // router.post('/', (req, res) =>{
+  //   const values = [3]
+  //   db.query(`
+  //       INSERT INTO order(user_id)
+  //       VALUES($1)
+  //       `, values).then(res => {console.log('res', res)})
+  // })
 
   return router;
   };
