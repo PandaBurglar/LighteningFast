@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE menu_items(
   id SERIAL PRIMARY KEY NOT NULL,
   item_name VARCHAR(255) NOT NULL,
-  item_price SMALLINT NOT NULL,
+  item_price NUMERIC NOT NULL,
   description TEXT NOT NULL,
   image VARCHAR(255) NOT NULL
 );
