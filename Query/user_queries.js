@@ -33,7 +33,7 @@ SET status= 'order confirmed' WHERE id = $1;
 const updateOrdersTableWithExpectedPickupQuery = 
 `UPDATE orders 
 SET payment_method = $1
-WHERE id = $1;
+WHERE id = $2;
 `;
 
 const updateOrdersTableWithTotalPriceQuery = 
@@ -43,7 +43,7 @@ SET total_price = (
   FROM order_items
   JOIN menu_items ON menu_items.id = order_items.menu_item_id
   WHERE order_items.id = $1)
-WHERE  id = $1;
+WHERE  id = $2;
 `;
 
 const getCheckoutPageQuery = 
