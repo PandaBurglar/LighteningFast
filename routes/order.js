@@ -20,9 +20,9 @@ module.exports = (db) => {
   });
 
   // This should show details about a specific order.
-  route.get('/:id', (req, res) => {
-    // Write the query in here to get info for a specific order.
-  })
+  // route.get('/:id', (req, res) => {
+  //   // Write the query in here to get info for a specific order.
+  // })
 
   // This route creates an order. POST To this route when the user clicks on the SUBMIT ORDER button to confirm the order.
   router.post('/', (req, res) =>{
