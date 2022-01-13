@@ -27,7 +27,7 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   placed_at TIMESTAMP DEFAULT NOW(),
   status VARCHAR(30) DEFAULT 'pending',
-  expected_pickup TIMESTAMP DEFAULT NOW() + interval '1 hour',
+  expected_pickup VARCHAR(30),
   payment_method TEXT DEFAULT 'cash',
   total_price SMALLINT DEFAULT 0,
   checkout BOOLEAN DEFAULT FALSE
