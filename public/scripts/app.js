@@ -33,12 +33,16 @@ $(document).ready(function() {
       const id = $(this).attr('id');
       const total = $(this).children('.total').children('.price').text();
       const orderItemsId = $(this).attr('id');
+      const time = $('#timepicker').val();
+      
       newOrder.id = id;
       newOrder.total = Number(total);
       newOrder.orderItemsId= orderItemsId;
+      newOrder.time = (time);
 
       orderSubmit.push(newOrder);
-    });
+    }); 
+
     // const id = $(this).attr('id');
     console.log(orderSubmit);
     $.ajax({
@@ -51,13 +55,12 @@ $(document).ready(function() {
     });
   })
   $(function () {
-
     // INITIALIZE DATEPICKER PLUGIN
     $('.datepicker').datepicker({
         clearBtn: true,
         format: "dd/mm/yyyy"
     });
-
-});
+ });
+ 
 });
 
