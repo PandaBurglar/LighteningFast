@@ -2,7 +2,7 @@ body {
 	display: flex;
   flex-direction: column;
 	min-height: 100vh;
-
+  font-family: 'Raleway', sans-serif;
 	padding: 0px;
 	margin: 0px;
 }
@@ -11,46 +11,58 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  font-family: 'Raleway', sans-serif;
+background-color: white;
 }
 
 .reviews-card {
 padding: 20px;
 width: 30%;
+font-family: 'Raleway', sans-serif;
+
 }
 
 .location-card{
   padding: 20px;
   line-height: 15px;
   font-size: 18px;
+  font-family: 'Raleway', sans-serif;
 
 }
 .hours-card {
   padding: 20px 20px;
   line-height: 15px;
   font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+
 }
 .carousel-inner {
-  height: 500px;
+  height: 600px;
 }
 .order-now {
   display: flex;
   justify-content: center;
   align-items: center;
-background-color: gray;
+  background-color: #010361;
+
 color: white;
 height: 40px;
-font-weight: 500;
+font-weight: 600;
 font-size: 25px;
 padding: 40px 0px;
+font-family: 'Raleway', sans-serif;
 }
 .order-now:hover {
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color:white;
+  background-color: #01023f;
+  font-weight: 700;
 }
 .info-header{
-  font-size: 25px;
-  margin-bottom: 15px;
+  font-size: 30px;
+  margin-top: 40px;
+  margin-bottom: 25px;
 }
 .location-img {
   height: 200px;
@@ -65,7 +77,12 @@ padding: 40px 0px;
   margin: 0px;
   font-style: italic;
 }
-
+nav{
+  background-color: #01023f; opacity: 0.6; filter: alpha(opacity=50);
+}
+.navbar-brand {
+  font-weight: 800;
+}
 
 
 .footer {
@@ -73,5 +90,9 @@ padding: 40px 0px;
   flex-direction: row;
 justify-content: space-between;
 padding: 20px 20px;
-background-color: gray;
+background-color: #01023f;
+font-family: 'Raleway', sans-serif;
+padding-top: 60px;
+border-top: 1px solid white;
+color: white;
 }

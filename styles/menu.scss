@@ -1,28 +1,80 @@
 body {
 	display: flex;
   flex-direction: column;
-
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
-
+.checkout-btn{
+  width: 400px;
+  padding: 30px 70px;
+  margin-bottom: 0px;
+  font-family: 'Raleway', sans-serif;
+font-weight: 700;
+font-size: 25px;
+background-color: #010361;
+color: white;
+border: 0px transparent;
+text-align: center;
+}
+.checkout-btn:hover{
+  background-color: #01023f;
+  cursor: pointer;
+}
+.checkout-btn2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.navbar-brand{
+  color: black;
+}
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
   margin: 0 auto;
+  background-color: white;
 }
+.main2{
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px;
+}
+
 .item{
   display: flex;
   flex-direction: row;
   width: 100%;
 justify-content: space-between;
+align-items: center;
 padding: 20px 40px;
-margin: 15px 0px;
-border: 1px solid black;
+margin: 15px;
+border: transparent;
+border-bottom: 2px solid #010361;
+font-family: 'Raleway', sans-serif;
+
+}
+.main-head{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.main-p{
+ font-weight: 600;
+ font-size: 18px;
+}
+
+p{
+  text-align: center;
 }
 h1{
   text-align: center;
-  padding: 50px;
+padding: 100px 0px 50px;
+font-family: 'Raleway', sans-serif;
+font-weight: 900;
 }
 
 .menu-item-img {
@@ -31,6 +83,8 @@ h1{
 }
 .menu-description {
   width: 40%;
+  font-family: 'Raleway', sans-serif;
+
 }
 .qty-box{
   justify-self: end;
@@ -39,26 +93,57 @@ h1{
 .price-qty{
   margin:  0px 30px;
 padding: 0px 10px;
+font-family: 'Raleway', sans-serif;
+
 }
 
 .submit-btn{
   width: 150px;
   padding: 10px 30px;
   justify-self: flex-end;
-  margin-bottom: 50px;
+  align-items: center;
+  margin-bottom: 0px;
+  font-family: 'Raleway', sans-serif;
+font-weight: 700;
+background-color: #010361;
+color: white;
+border: 0px transparent;
+}
+.submit-btn:hover{
+  background-color: #01023f;
+  cursor: pointer;
 }
 
 .btn-div{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  width: 90%;
+
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+
 }
+
+p{
+font-family: 'Raleway', sans-serif;
+
+}
+
+nav{
+  background-color: #01023f; opacity: 0.6; filter: alpha(opacity=50);
+}
+.navbar-brand {
+  font-weight: 800;
+}
+
 
 .footer {
   display: flex;
   flex-direction: row;
 justify-content: space-between;
 padding: 20px 20px;
-background-color: gray;
+background-color: #01023f;
+font-family: 'Raleway', sans-serif;
+padding-top: 60px;
+border-top: 1px solid white;
+color: white;
 }

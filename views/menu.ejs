@@ -3,7 +3,9 @@
 
 <head>
   <title>Menu</title>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
@@ -16,8 +18,12 @@
 
 <%- include('partials/header') %>
 <body>
+  <div class="bg">
 <h1>Cafe Menu</h1>
+<div class='main2'>
+  <div class='main-head'>
 
+  </div>
 <% for (let item of menu) { %>
   <container class='main'>
     <div class='item'>
@@ -25,13 +31,16 @@
   <img class="menu-item-img" src=<%= item.image %> alt="">
     </div>
     <div class="item-name">
+      <p class="main-p">Item</p>
       <p><%= item.item_name %></p>
     </div>
     <div class="menu-description">
+      <p class="main-p">Description</p>
       <p><%= item.description %></p>
     </div>
     <div class="price-qty">
-  <p class='price'><%= item.item_price %></p>
+      <p class="main-p">Price/Qty</p>
+  <p class='price'>$<%= item.item_price %></p>
 
   <form>
   <input class="qty-box"type="text">
@@ -46,7 +55,12 @@
     </div>
   </container>
   <% } %>
-  <button class='checkout-btn'>Go to Checkout</button>
+</div>
+<div class="checkout-btn2">
+
+  <button class='checkout-btn'>GO TO CHECKOUT</button>
+</div>
+</div>
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

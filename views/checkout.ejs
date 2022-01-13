@@ -20,12 +20,7 @@
 
 <container class='main'>
   <% let subtotal=0 %>
-  <div class='main-head'>
-    <p>Item</p>
-    <p>Quantity</p>
-    <p>Unit Price</p>
-    <p>Total Price</p>
-  </div>
+
   <% for (let item of checkout) { %>
   <div id=<%= item.order_id %> class='item'>
   <div>
@@ -34,18 +29,22 @@
   <div class="item-name">
 
     <% subtotal += item.unit_price * item.quantity %>
+    <p class="item-head">Item</p>
     <p><%= item.item %></p>
 
 
   </div>
   <div class="quantity">
-    <p><%= item.quantity %> </p>
+    <p class="item-head">Quantity</p>
+    <p class='price'><%= item.quantity %> </p>
   </div>
   <div class="price">
-<p class='price'><%= item.unit_price %></p>
+    <p class="item-head">Unit Price</p>
+<p class='price'>$<%= item.unit_price %></p>
 </div>
   <div class="total">
-<p class='price'> <%= (item.unit_price * item.quantity).toFixed(2) %></p>
+    <p class="item-head">Total Price</p>
+<p class='price'> $<%= (item.unit_price * item.quantity).toFixed(2) %></p>
 </div>
   </div>
   <% } %>
@@ -54,9 +53,9 @@
 <container class='subtotal'>
   <div class='subtotal-calc'>
     <% let tax = (0.13 * subtotal).toFixed(2) %>
-    <p>Subtotal: <%= subtotal.toFixed(2) %></p>
+    <p>Subtotal: $<%= subtotal.toFixed(2) %></p>
     <p>Tax: <%= tax %></p>
-    <p>Total: <%= (Number(subtotal) + Number(tax)).toFixed(2) %></p>
+    <p>Total: $<%= (Number(subtotal) + Number(tax)).toFixed(2) %></p>
     </div>
   <div>
     <div class="payment-methods">

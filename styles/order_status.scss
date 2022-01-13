@@ -5,7 +5,7 @@ body {
 }
 h1{
   text-align: center;
-  padding: 50px;
+  padding: 100px 0px 50px;
 }
 
 
@@ -16,32 +16,67 @@ h1{
   width: 90%;
   margin: 0 auto;
 }
-
+h2{
+  text-align: center;
+}
 .order-details{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  border: 2px solid #01023f;
   width: 70%;
   margin: 0 auto;
   padding: 20px 0px;
   margin-bottom: 20px;
+}
+.od-head{
+  font-weight: 600;
+  font-size: 18px;
+
+}
+.od-1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+width: 95%;
+border-bottom: 1px solid #01023f;
 }
 .order-status{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  justify-content: center;
+  border: 2px solid #01023f;
   width: 70%;
   margin: 0 auto;
   padding: 20px 0px;
   margin-bottom: 20px;
 
 }
+.pickup-time{
+  border-bottom: 1px solid #01023f;
+  width: 90%;
+  margin-bottom: 20px;
+}
+p{
+  text-align: center;
+}
+nav{
+  background-color: #01023f; opacity: 0.6; filter: alpha(opacity=50);
+}
+.navbar-brand {
+  font-weight: 800;
+}
+
+
 .footer {
   display: flex;
   flex-direction: row;
 justify-content: space-between;
 padding: 20px 20px;
-background-color: gray;
+background-color: #01023f;
+font-family: 'Raleway', sans-serif;
+padding-top: 60px;
+border-top: 1px solid white;
+color: white;
 }
