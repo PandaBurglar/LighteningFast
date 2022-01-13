@@ -13,8 +13,8 @@ const getItemsPerUserQuery =
 where user_id = $1;`;
 
 const apendOrdersTableWithUserIdQuery = `
-  INSERT INTO orders (user_id)
-  VALUES ($1)
+  INSERT INTO orders (user_id, checkout)
+  VALUES ($1, $2)
   RETURNING id;
 `;
 
@@ -31,26 +31,26 @@ const updateOrderStatusInOrdersTableQuery =
 SET status= 'order confirmed' WHERE id = $1;
 `;
 const updateOrdersTableWithExpectedPickupQuery =
-`UPDATE orders
-SET payment_method = $1
+`INSERT INTO orders (expected_pickup)
+VALUES ($1)
 WHERE id = $2;
 `;
 
 const updateOrdersTableWithTotalPriceQuery =
 `UPDATE orders
-SET total_price = (
-  SELECT sum(menu_items.item_price_cents * order_items.quantity) as total
+SET checkout = $1, total_price = (
+  SELECT sum(menu_items.item_price * order_items.quantity) as total
   FROM order_items
   JOIN menu_items ON menu_items.id = order_items.menu_item_id
-  WHERE order_items.id = $1)
-WHERE  id = $2;
+  WHERE order_items.id = $2)
+WHERE  id = $3;
 `;
 
 const getCheckoutPageQuery =
 `SELECT order_id, quantity, total_price as total,
 menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.image, users.name as customer
 FROM order_items
-JOIN orders ON orders.id = order_id
+JOIN orders ON orders.id = order_id AND orders.checkout = true
 JOIN menu_items ON menu_items.id = order_items.menu_item_id
 JOIN users ON users.id = $1;
 `;
@@ -72,7 +72,7 @@ function apendOrdersTableWithCurrentOrderReturningOrderId(db, foodData) {
 };
 
 function apendOrdersTableWithUserId(db, userId) {
-  return db.query(apendOrdersTableWithUserIdQuery, [userId])
+  return db.query(apendOrdersTableWithUserIdQuery, [userId, true])
     .then((data) => {
       return data.rows[0].id;
     });
@@ -82,12 +82,13 @@ function updateOrderStatusInOrdersTable(db, orderId) {
   return db.query(updateOrderStatusInOrdersTableQuery, [orderId]);
 };
 
-function updateOrdersTableWithExpectedPickup(db, orderId) {
+function updateOrdersTableWithExpectedPickup(db, time, orderId) {
   return db.query(updateOrdersTableWithExpectedPickupQuery, [orderId]);
 };
 
 function updateOrdersTableWithTotalPrice(db, orderItemId, orderId) {
-  return db.query(updateOrdersTableWithTotalPriceQuery, [orderItemId, orderId]);
+  console.log(orderItemId, orderId);
+  return db.query(updateOrdersTableWithTotalPriceQuery, [false, orderItemId, orderId]);
 };
 
 function getUserIdFromName(db, userName) {

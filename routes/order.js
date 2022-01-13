@@ -20,31 +20,36 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+  });
 
-    router.post('/', (req, res) => {
-      let orderDetails = JSON.parse(req.body.data);
-      console.log(orderDetails);
-      orderDetails.forEach(order => {
-        updateOrdersTableWithTotalPrice(db, res.orderItemsId, res.id)
-          .then(data => {
-            const orderSubmit = data.rows;
-            console.log(orderSubmit);
-            const templateVars = { orderSubmit };
-            res.render('order', templateVars);
+  router.post('/', (req, res) => {
+    let orderDetails = JSON.parse(req.body.data);
+    console.log(orderDetails);
+    orderDetails.forEach(order => {
+      updateOrdersTableWithTotalPrice(db, order.orderItemsId, order.id)
+        .then(data => {
+          const orderSubmit = data.rows;
+          console.log(orderSubmit);
+          const templateVars = { orderSubmit };
+          res.render('order', templateVars);
 
-            // apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty]))
-          })
+          // apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty]))
+        })
 
-        // router.post('/', (req, res) => {
-        //   let orderInfo = JSON.parse(req.body.data);
-        //   console.log(orderInfo);
-        //   orderInfo.forEach(order=> {
-        //     apendOrdersTableWithUserId(db, 4)
-        //     .then(id => apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty]))
-        //  })
-        // });
-      });
+      // router.post('/', (req, res) => {
+      //   let orderInfo = JSON.parse(req.body.data);
+      //   console.log(orderInfo);
+      //   orderInfo.forEach(order=> {
+      //     apendOrdersTableWithUserId(db, 4)
+      //     .then(id => apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty]))
+      //  })
+      // });
+
     });
+
+    router.get('/:id', (req, res)=>{
+      
+    })
     // This should show details about a specific order.
     // route.get('/:id', (req, res) => {
     //   // Write the query in here to get info for a specific order.
