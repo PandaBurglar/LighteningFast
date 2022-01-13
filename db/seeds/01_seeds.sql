@@ -40,14 +40,14 @@ VALUES ('Bluebery Danish', 2.75, 'Pastry filled with blueberry jam', '/images/Da
 ('Tiramisu', 4.49, 'Ladyfingers soaked in espresso and Khaula, layered with mascarpone filling and chocolate shavings', '/images/Other-Tiramisu-Cup.jpg');
 
 
-INSERT INTO orders (user_id, payment_method, placed_at, expected_pickup, status, total_price)
-VALUES (1, 'cash', '2022-05-22 19:10:25-07', '2022-05-22 19:20:25-07', 'pending',  5.50),
-(2, 'debit', '2022-06-22 19:11:25-07', '2022-06-22 20:25:25-07', 'being prepared', 8.25),
-(3, 'cash', '2022-07-22 19:11:25-07', '2022-07-22 20:25:25-07', 'pending', 2.75),
-(4, 'credit', '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup', 11),
-(5, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed', 39.9),
-(6, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'cancelled', 39.9),
-(7, 'debit', '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'completed', 39.9);
+INSERT INTO orders (user_id, placed_at, expected_pickup, status, total_price)
+VALUES (1, '2022-05-22 19:10:25-07', '2022-05-22 19:20:25-07', 'pending',  5.50),
+(2, '2022-06-22 19:11:25-07', '2022-06-22 20:25:25-07', 'being prepared', 8.25),
+(3, '2022-07-22 19:11:25-07', '2022-07-22 20:25:25-07', 'pending', 2.75),
+(4, '2022-08-22 19:15:25-07', '2022-08-22 20:30:25-07', 'ready for pickup', 11),
+(5, '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'order confirmed', 39.9),
+(6, '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'cancelled', 39.9),
+(7, '2022-09-22 19:25:25-07', '2022-09-22 20:35:25-07', 'completed', 39.9);
 
 
 INSERT INTO order_items (menu_item_id, order_id, quantity)

@@ -25,7 +25,7 @@ module.exports = (db) => {
       let orderDetails = JSON.parse(req.body.data);
       console.log(orderDetails);
       orderDetails.forEach(order => {
-        updateOrdersTableWithTotalPrice(db, res.id)
+        updateOrdersTableWithTotalPrice(db, res.orderItemsId, res.id)
           .then(data => {
             const orderSubmit = data.rows;
             console.log(orderSubmit);
