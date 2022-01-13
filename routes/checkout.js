@@ -21,11 +21,14 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     let orderInfo = JSON.parse(req.body.data);
-    console.log(orderInfo);
-    orderInfo.forEach(order=> {
-      apendOrdersTableWithUserId(db, 4)
-      .then(id => apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty]))
- })
+    console.log('order info -----', orderInfo);
+    apendOrdersTableWithUserId(db, 4)
+    .then
+    (id => orderInfo.forEach (order=> {
+       apendOrdersTableWithCurrentOrderReturningOrderId(db, [order.id, id, order.qty])}
+       )
+
+ )
 });
 
 return router;

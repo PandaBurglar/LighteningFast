@@ -29,12 +29,15 @@ $(document).ready(function() {
     console.log('data.stringify', JSON.stringify(order));
     const orderSubmit = [];
     $('.item').each(function() {
+      console.log('this is it -------',this);
+
       const newOrder = {};
       const id = $(this).attr('id');
       const total = $(this).children('.total').children('.price').text();
+      console.log('total--', total.substring(2));
       const orderItemsId = $(this).attr('id');
       newOrder.id = id;
-      newOrder.total = Number(total);
+      newOrder.total = Number(total.substring(2));
       newOrder.orderItemsId= orderItemsId;
 
       orderSubmit.push(newOrder);
@@ -49,8 +52,6 @@ $(document).ready(function() {
         console.log('success');
       }
     });
-
-
 
   })
 
