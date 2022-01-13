@@ -24,9 +24,9 @@
   <% let subtotal=0 %>
 
   <% for (let item of checkout) { %>
-  <div id=<%= item.order_id %> class='item'>
+  <div id="<%= item.order_id %>" class='item'>
   <div>
-<img class="menu-item-img" src=<%= item.image %> alt="">
+<img class="menu-item-img" src="<%= item.image %>" alt="">
   </div>
   <div class="item-name">
 
@@ -51,13 +51,14 @@
   </div>
   <% } %>
 </container>
-
-<input id="timepicker" width="276" />
+<container>
+  <input id="timepicker" width="276" />
     <script>
         $('#timepicker').timepicker({
             uiLibrary: 'bootstrap4'
         });
     </script>
+</container>
 
 <container class='subtotal'>
   <div class='subtotal-calc'>
