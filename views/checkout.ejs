@@ -19,34 +19,44 @@
 <h1>My Cart</h1>
 
 <container class='main'>
-  <div class='item'>
+  <% let subtotal=0 %>
+  <div class='main-head'>
+    <p>Item</p>
+    <p>Quantity</p>
+    <p>Unit Price</p>
+    <p>Total Price</p>
+  </div>
+  <% for (let item of checkout) { %>
+  <div id=<%= item.order_id %> class='item'>
   <div>
-<img class="menu-item-img" src="images/holly-stratton-XTHa-47HjjI-unsplash.jpg" alt="">
+<img class="menu-item-img" src=<%= item.image %> alt="">
   </div>
   <div class="item-name">
 
-   <% for (let item of checkoutCart) { %>
-    <p><%= item.item_name %></p>
+    <% subtotal += item.unit_price * item.quantity %>
+    <p><%= item.item %></p>
 
-    <% } %>
+
   </div>
   <div class="quantity">
-    <p>Quantity</p>
+    <p><%= item.quantity %> </p>
   </div>
   <div class="price">
-<p class='price'>Item Price</p>
+<p class='price'><%= item.unit_price %></p>
 </div>
   <div class="total">
-<p class='price'>Total</p>
+<p class='price'> <%= (item.unit_price * item.quantity).toFixed(2) %></p>
 </div>
   </div>
+  <% } %>
 </container>
 
 <container class='subtotal'>
   <div class='subtotal-calc'>
-    <p>Subtotal:</p>
-    <p>Tax:</p>
-    <p>Total:</p>
+    <% let tax = (0.13 * subtotal).toFixed(2) %>
+    <p>Subtotal: <%= subtotal.toFixed(2) %></p>
+    <p>Tax: <%= tax %></p>
+    <p>Total: <%= (Number(subtotal) + Number(tax)).toFixed(2) %></p>
     </div>
   <div>
     <div class="payment-methods">
@@ -63,10 +73,10 @@
 </container>
 
 <div class='btn-div'>
-  <button class='submit-btn'>SUBMIT ORDER</button>
+  <button class='submit-btn2'>SUBMIT ORDER</button>
 </div>
 <!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

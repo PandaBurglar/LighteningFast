@@ -23,6 +23,32 @@ $(document).ready(function() {
         console.log('success');
       }
     });
+  })
+
+  $('.submit-btn2').on('click', function() {
+    console.log('data.stringify', JSON.stringify(order));
+    const orderSubmit = [];
+    $('.item').each(function() {
+      const newOrder = {};
+      const id = $(this).attr('id');
+      const total = $(this).children('.total').children('.price').text();
+      const orderItemsId = $(this).attr('id');
+      newOrder.id = id;
+      newOrder.total = Number(total);
+      newOrder.orderItemsId= orderItemsId;
+
+      orderSubmit.push(newOrder);
+    });
+    // const id = $(this).attr('id');
+    console.log(orderSubmit);
+    $.ajax({
+      url: '/order',
+      method: "POST",
+      data: { data: JSON.stringify(orderSubmit) },
+      success: function() {
+        console.log('success');
+      }
+    });
 
 
 

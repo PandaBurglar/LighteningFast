@@ -2,14 +2,14 @@ const getIdFromUsersQuery = `SELECT id FROM users WHERE name = $1;`;
 
 const getNameFromUsersQuery = `SELECT name FROM users WHERE id = $1;`;
 
-const getOrdersPerUserQuery = 
+const getOrdersPerUserQuery =
 `SELECT * FROM orders
 JOIN order_items ON orders.id = order_id
 JOIN menu_items ON menu_items.id = orders.user_id
 WHERE user_id = $1;`;
 
-const getItemsPerUserQuery = 
-` SELECT * FROM orders 
+const getItemsPerUserQuery =
+` SELECT * FROM orders
 where user_id = $1;`;
 
 const apendOrdersTableWithUserIdQuery = `
@@ -18,35 +18,35 @@ const apendOrdersTableWithUserIdQuery = `
   RETURNING id;
 `;
 
-const apendOrderItemsTableWithCurrentOrderQuery = 
+const apendOrderItemsTableWithCurrentOrderQuery =
 ` INSERT INTO order_items (
   menu_item_id,
-  order_id, 
+  order_id,
   quantity )
   VALUES ($1, $2, $3)
   RETURNING order_id;`;
 
-const updateOrderStatusInOrdersTableQuery = 
-`UPDATE orders 
+const updateOrderStatusInOrdersTableQuery =
+`UPDATE orders
 SET status= 'order confirmed' WHERE id = $1;
 `;
-const updateOrdersTableWithExpectedPickupQuery = 
-`UPDATE orders 
+const updateOrdersTableWithExpectedPickupQuery =
+`UPDATE orders
 SET payment_method = $1
 WHERE id = $2;
 `;
 
-const updateOrdersTableWithTotalPriceQuery = 
-`UPDATE orders 
+const updateOrdersTableWithTotalPriceQuery =
+`UPDATE orders
 SET total_price = (
-  SELECT sum(menu_items.item_price_cents * order_items.quantity) as total 
+  SELECT sum(menu_items.item_price_cents * order_items.quantity) as total
   FROM order_items
   JOIN menu_items ON menu_items.id = order_items.menu_item_id
   WHERE order_items.id = $1)
 WHERE  id = $2;
 `;
 
-const getCheckoutPageQuery = 
+const getCheckoutPageQuery =
 `SELECT order_id, quantity, total_price as total,
 menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.image, users.name as customer
 FROM order_items
@@ -61,14 +61,14 @@ const getIdandOrderStatusQuery = `
   WHERE id = $1
 `;
 
-const getMenuItemsQuery = 
+const getMenuItemsQuery =
 `
 SELECT *
 FROM menu_items;
 `;
 
 function apendOrdersTableWithCurrentOrderReturningOrderId(db, foodData) {
-  return db.query(apendOrderItemsTableWithCurrentOrderQuery, foodData);  
+  return db.query(apendOrderItemsTableWithCurrentOrderQuery, foodData);
 };
 
 function apendOrdersTableWithUserId(db, userId) {
@@ -86,8 +86,8 @@ function updateOrdersTableWithExpectedPickup(db, orderId) {
   return db.query(updateOrdersTableWithExpectedPickupQuery, [orderId]);
 };
 
-function updateOrdersTableWithTotalPrice(db, orderId) {
-  return db.query(updateOrdersTableWithTotalPriceQuery, [orderId]);
+function updateOrdersTableWithTotalPrice(db, orderItemId, orderId) {
+  return db.query(updateOrdersTableWithTotalPriceQuery, [orderItemId, orderId]);
 };
 
 function getUserIdFromName(db, userName) {
@@ -109,14 +109,14 @@ function getOrdersPerUser(db, userId) {
     .then(orderData => {
       return orderData.rows;
     });
-}; 
+};
 
 function getCheckoutPage(db, userId) {
   return db.query(getCheckoutPageQuery, [userId])
     .then(orderData => {
       return orderData.rows;
     });
-}; 
+};
 
 function getIdandOrderStatus(db, orderId) {
   return db.query(getIdandOrderStatusQuery, [orderId]).then(data => {
@@ -142,13 +142,13 @@ module.exports = {
   apendOrdersTableWithUserId,
   apendOrdersTableWithCurrentOrderReturningOrderId,
   updateOrdersTableWithTotalPrice,
+  updateOrdersTableWithExpectedPickup,
+  updateOrderStatusInOrdersTable,
   getUserIdFromName,
   getNameFromUserId,
   getOrdersPerUser,
   getItemsPerUser,
   getIdandOrderStatus,
   getMenuItems,
-  updateOrdersTableWithExpectedPickup,
-  updateOrderStatusInOrdersTable, 
   getCheckoutPage
 }
