@@ -29,7 +29,8 @@ CREATE TABLE orders (
   status VARCHAR(30) DEFAULT 'pending',
   expected_pickup TIMESTAMP DEFAULT NOW() + interval '1 hour',
   payment_method TEXT DEFAULT 'cash',
-  total_price SMALLINT DEFAULT 0
+  total_price SMALLINT DEFAULT 0,
+  checkout BOOLEAN DEFAULT FALSE
 );
 
 
