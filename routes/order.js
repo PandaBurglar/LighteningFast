@@ -33,7 +33,7 @@ module.exports = (db) => {
 
     client.messages.create({
       to: '+17633479658',
-      from: '+16479310409',
+      from: '+16479551772',
       body: 'Thank you for placing an order with Cloud Cafe. Your order has been confirmed.'
     })
       .then((message) => console.log(message.sid));
