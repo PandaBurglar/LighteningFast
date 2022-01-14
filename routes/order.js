@@ -2,18 +2,21 @@ const express = require('express');
 const router = express.Router();
 const { updateOrdersTableWithTotalPrice,
   updateOrdersTableWithExpectedPickup,
-  updateOrderStatusInOrdersTable } = require('../Query/user_queries');
+  updateOrderStatusInOrdersTable, getOrdersPerUser } = require('../Query/user_queries');
 
 module.exports = (db) => {
   // This should show ALL the orders for a user.
-  router.get('/', (req, res) => {
-
-    db.query(`SELECT * FROM orders JOIN order_items ON orders.id = order_id JOIN menu_items ON menu_items.id = orders.user_id WHERE user_id = 3;`)
+  router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    console.log('id', id);
+    getOrdersPerUser(db, id)
       .then(data => {
-        const order = data.rows;
-        console.log(order);
+        const order = data;
+        console.log('order', order);
         const templateVars = { order };
         res.render('order', templateVars)
+        // res.status(200)
+          // .json({ order })
       })
       .catch(err => {
         res
@@ -47,8 +50,8 @@ module.exports = (db) => {
 
     });
 
-    router.get('/:id', (req, res)=>{
-      
+    router.get('/:id', (req, res) => {
+
     })
     // This should show details about a specific order.
     // route.get('/:id', (req, res) => {

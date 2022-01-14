@@ -29,7 +29,7 @@ $(document).ready(function() {
     console.log('data.stringify', JSON.stringify(order));
     const orderSubmit = [];
     $('.item').each(function() {
-      console.log('this is it -------',this);
+      console.log('this is it -------', this);
 
       const newOrder = {};
       const id = $(this).attr('id');
@@ -38,12 +38,12 @@ $(document).ready(function() {
       const orderItemsId = $(this).attr('id');
       newOrder.id = id;
       newOrder.total = Number(total.substring(2));
-      newOrder.orderItemsId= orderItemsId;
+      newOrder.orderItemsId = orderItemsId;
 
       orderSubmit.push(newOrder);
     });
     // const id = $(this).attr('id');
-    console.log(orderSubmit);
+    console.log('orderSubmit', orderSubmit);
     $.ajax({
       url: '/order',
       method: "POST",
@@ -55,5 +55,14 @@ $(document).ready(function() {
 
   })
 
+  $.ajax({
+    url: '/order/1',
+    method: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      console.log("data---->", data);
+    }
+
+  })
 });
 

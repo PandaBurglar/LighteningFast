@@ -16,7 +16,7 @@
 
 <body>
   <%- include('partials/header') %>
-
+<% let total = 0  %>
 
     <h1>My Order</h1>
 
@@ -26,41 +26,46 @@
     </div>
 <div class='order-details'>
 
+  <% for (let item of order) { %>
+    <% total += item.item_price * item.quantity %>
+
   <div class='od-1'>
   <div class="item-name">
   <p class="od-head">Item</p>
-    <p>items</p>
+    <p><%= item.item_name %></p>
   </div>
   <div class="quantity">
   <p class="od-head">Quantity</p>
-    <p>quantity</p>
+    <p><%= item.quantity %></p>
   </div>
   <div class="price">
   <p class="od-head">Price</p>
-    <p>price</p>
+    <p><%= item.item_price %></p>
   </div>
 </div>
+<% } %>
+<div class="od-head">
+</div>
 
-  <div class="od-head">
-    Total:
-  </div>
+<p id='order-total'> Total: $<%= (total*1.13).toFixed(2) %></p>
 
   </div>
   <h2>Order Status</h2>
   <div class='order-status'>
     <div class="pickup-time">
   <p class="od-head">Pick-up Time</p>
-      <p>pickup time</p>
+      <p></p>
     </div>
     <div class="status">
       <div>
 
         <p class="od-head">Status of Order</p>
       </div>
-      <p>status</p>
+      <p><p></p></p>
     </div>
   </div>
 <!-- Bootstrap JS -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

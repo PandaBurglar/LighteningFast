@@ -3,13 +3,13 @@ const getIdFromUsersQuery = `SELECT id FROM users WHERE name = $1;`;
 const getNameFromUsersQuery = `SELECT name FROM users WHERE id = $1;`;
 
 const getOrdersPerUserQuery =
-`SELECT * FROM orders
+  `SELECT * FROM orders
 JOIN order_items ON orders.id = order_id
-JOIN menu_items ON menu_items.id = orders.user_id
+JOIN menu_items ON menu_items.id = order_items.menu_item_id
 WHERE user_id = $1;`;
 
 const getItemsPerUserQuery =
-` SELECT * FROM orders
+  ` SELECT * FROM orders
 where user_id = $1;`;
 
 const apendOrdersTableWithUserIdQuery = `
@@ -19,7 +19,7 @@ const apendOrdersTableWithUserIdQuery = `
 `;
 
 const apendOrderItemsTableWithCurrentOrderQuery =
-` INSERT INTO order_items (
+  ` INSERT INTO order_items (
   menu_item_id,
   order_id,
   quantity )
@@ -27,17 +27,17 @@ const apendOrderItemsTableWithCurrentOrderQuery =
   RETURNING order_id;`;
 
 const updateOrderStatusInOrdersTableQuery =
-`UPDATE orders
+  `UPDATE orders
 SET status= 'order confirmed' WHERE id = $1;
 `;
 const updateOrdersTableWithExpectedPickupQuery =
-`UPDATE orders
+  `UPDATE orders
 SET payment_method = $1
 WHERE id = $2;
 `;
 
 const updateOrdersTableWithTotalPriceQuery =
-`UPDATE orders
+  `UPDATE orders
 SET checkout = $1, total_price = (
   SELECT sum(menu_items.item_price * order_items.quantity) as total
   FROM order_items
@@ -47,7 +47,7 @@ WHERE  id = $3;
 `;
 
 const getCheckoutPageQuery =
-`SELECT order_id, quantity, total_price as total,
+  `SELECT order_id, quantity, total_price as total,
 menu_items.item_name as item, menu_items.item_price as unit_price, menu_items.image, users.name as customer
 FROM order_items
 JOIN orders ON orders.id = order_id AND orders.checkout = true
@@ -62,7 +62,7 @@ const getIdandOrderStatusQuery = `
 `;
 
 const getMenuItemsQuery =
-`
+  `
 SELECT *
 FROM menu_items;
 `;
