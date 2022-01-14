@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
@@ -48,7 +49,11 @@
   </div>
   <div class='btn-div'>
 <!-- Step1. Make this button add the item that the user clicked on to local storage. -->
-    <button id='<%= item.id %>' class='submit-btn' type='submit' >ADD TO CART</button>
+    <button id='<%= item.id %>' class='submit-btn' type='submit' >
+       <span class="add-to-cart">ADD TO CART</span>
+      <span class="added">Added</span>
+      <i class="fas fa-shopping-cart"></i>
+      <i class="fas fa-box"></i></button>
   </div>
 </form>
 
@@ -58,9 +63,20 @@
 </div>
 <div class="checkout-btn2">
 
-  <button class='checkout-btn'>GO TO CHECKOUT</button>
+  <button class='checkout-btn' onclick="location.href='http://localhost:8080/checkout'">GO TO CHECKOUT</button>
 </div>
 </div>
+<script>
+  const cartButtons = document.querySelectorAll('.submit-btn');
+  cartButtons.forEach(button => {
+    button.addEventListener('click', cartClick);
+  });
+
+  function cartClick() {
+    let button = this;
+    button.classList.add('clicked');
+  }
+  </script>
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

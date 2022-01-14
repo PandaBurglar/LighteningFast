@@ -48,7 +48,22 @@ padding: 20px 40px;
 margin: 15px 0px;
 border-bottom: 2px solid #010361;
 }
-
+.select{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 5px 15px 0px 0px;
+}
+.time-picker{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 85%;
+  margin-left: 60px;
+  margin-top: 50px;
+}
 .subtotal-calc {
   display: flex;
   flex-direction: column;
@@ -121,7 +136,7 @@ text-align: center;
   cursor: pointer;
 }
 nav{
-  background-color: #01023f; opacity: 0.6; filter: alpha(opacity=50);
+  background-color: #01023f; opacity: 0.9; filter: alpha(opacity=50);
 }
 .navbar-brand {
   font-weight: 800;
