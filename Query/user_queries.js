@@ -31,8 +31,9 @@ const updateOrderStatusInOrdersTableQuery =
 SET status= 'order confirmed' WHERE id = $1;
 `;
 const updateOrdersTableWithExpectedPickupQuery =
-  `UPDATE orders
-SET payment_method = $1
+
+  `INSERT INTO orders (expected_pickup)
+VALUES ($1)
 WHERE id = $2;
 `;
 
@@ -82,7 +83,7 @@ function updateOrderStatusInOrdersTable(db, orderId) {
   return db.query(updateOrderStatusInOrdersTableQuery, [orderId]);
 };
 
-function updateOrdersTableWithExpectedPickup(db, orderId) {
+function updateOrdersTableWithExpectedPickup(db, time, orderId) {
   return db.query(updateOrdersTableWithExpectedPickupQuery, [orderId]);
 };
 

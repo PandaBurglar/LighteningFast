@@ -27,10 +27,11 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     let orderDetails = JSON.parse(req.body.data);
-    console.log(orderDetails);
+    console.log('orderDetails:', orderDetails);
     orderDetails.forEach(order => {
       updateOrdersTableWithTotalPrice(db, order.orderItemsId, order.id)
         .then(data => {
+          updateOrdersTableWithExpectedPickup(db, order.time, order.id)
           const orderSubmit = data.rows;
           console.log(orderSubmit);
           const templateVars = { orderSubmit };

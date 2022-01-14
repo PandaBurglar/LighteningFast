@@ -36,12 +36,20 @@ $(document).ready(function() {
       const total = $(this).children('.total').children('.price').text();
       console.log('total--', total.substring(2));
       const orderItemsId = $(this).attr('id');
+      const time = $('#timepicker').val();
+      
       newOrder.id = id;
       newOrder.total = Number(total.substring(2));
+<<<<<<< HEAD
       newOrder.orderItemsId = orderItemsId;
+=======
+      newOrder.orderItemsId= orderItemsId;
+      newOrder.time = (time);
+>>>>>>> 66d14493e82d4c33ae30ff9f6cb8e660319f0ace
 
       orderSubmit.push(newOrder);
-    });
+    }); 
+
     // const id = $(this).attr('id');
     console.log('orderSubmit', orderSubmit);
     $.ajax({
@@ -52,8 +60,15 @@ $(document).ready(function() {
         console.log('success');
       }
     });
-
-  })
+ 
+  });
+  $(function () {
+    // INITIALIZE DATEPICKER PLUGIN
+    $('.datepicker').datepicker({
+        clearBtn: true,
+        format: "dd/mm/yyyy"
+    });
+  });
 
   $.ajax({
     url: '/order/1',
@@ -65,4 +80,3 @@ $(document).ready(function() {
 
   })
 });
-
