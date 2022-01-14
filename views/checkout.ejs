@@ -42,11 +42,11 @@
   </div>
   <div class="price">
     <p class="item-head">Unit Price</p>
-<p class='price'> $<%= item.unit_price %></p>
+<p class='price'><%= item.unit_price %></p>
 </div>
   <div class="total">
     <p class="item-head">Total Price</p>
-<p class='price'> $<%= (item.unit_price * item.quantity).toFixed(2) %></p>
+<p class='price'> <%= (item.unit_price * item.quantity).toFixed(2) %></p>
 </div>
   </div>
   <% } %>

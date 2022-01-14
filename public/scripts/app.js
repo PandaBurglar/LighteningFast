@@ -56,13 +56,14 @@ $(document).ready(function() {
         console.log('success');
       }
     });
+ 
+  });
   $(function () {
     // INITIALIZE DATEPICKER PLUGIN
     $('.datepicker').datepicker({
         clearBtn: true,
         format: "dd/mm/yyyy"
     });
- });
- 
-});
+  });
 
+});
